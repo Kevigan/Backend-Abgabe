@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://najj3aer20y8"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_py5vx"]
+[ext_resource type="Texture2D" uid="uid://cwj1rajl1013v" path="res://icon.svg" id="1_wiq56"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xkhyc"]
+size = Vector2(127, 127)
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_py5vx")
+Speed = 150.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_xkhyc")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("1_wiq56")
+
+[node name="NameLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -81.0
+offset_top = -95.0
+offset_right = 81.0
+offset_bottom = -69.0
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "PlayerName"
+horizontal_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="HP_Bar" type="HSlider" parent="."]
+modulate = Color(0.976471, 0, 0, 1)
+offset_left = -74.0
+offset_top = -107.0
+offset_right = 74.0
+offset_bottom = -91.0
+value = 100.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

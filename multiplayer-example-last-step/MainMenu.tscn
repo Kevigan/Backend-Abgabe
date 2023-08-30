@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbohv0ory4clr"]
+
+[ext_resource type="Script" path="res://MainMenu.cs" id="1_ndj3f"]
+[ext_resource type="PackedScene" uid="uid://c8rwd5nptoh0d" path="res://SelectionPage.tscn" id="2_b4x56"]
+[ext_resource type="PackedScene" uid="uid://b43h3yigjnxx6" path="res://HostPage.tscn" id="3_8s2lc"]
+[ext_resource type="PackedScene" uid="uid://dxjfflx8hkltd" path="res://JoinGame.tscn" id="4_cfidw"]
+[ext_resource type="PackedScene" uid="uid://x7v8mw043425" path="res://World.tscn" id="5_b3gme"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ndj3f")
+
+[node name="SelectionPage" parent="." instance=ExtResource("2_b4x56")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="HostPage" parent="." node_paths=PackedStringArray("world") instance=ExtResource("3_8s2lc")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+world = NodePath("../World")
+
+[node name="JoinGame" parent="." instance=ExtResource("4_cfidw")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="World" parent="." instance=ExtResource("5_b3gme")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="Selected" from="SelectionPage" to="." method="_on_selection"]
+[connection signal="Selected" from="HostPage" to="." method="_on_selection"]
+[connection signal="Selected" from="JoinGame" to="." method="_on_selection"]
